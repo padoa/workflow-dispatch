@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Check out repository
-      uses: actions/checkout@v2
-    - uses: actions/setup-node@v2
+      uses: actions/checkout@0717577d45739eb3c851188b29f50ed6c0b2194e # v2.8.0
+    - uses: actions/setup-node@7c12f8017d5436eb855f1ed4399f037a36fbd9e8 # v2.5.2
       with:
         node-version: '12'
     - name: Build with ncc
@@ -20,7 +20,7 @@ jobs:
         yarn install
         yarn run build
     - name: Archive dist
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2 # v2.3.1
       with:
         name: build
         path: dist
@@ -31,9 +31,9 @@ jobs:
     name: "echo-1-test [trigger|by workflow name]"
     steps:
     - name: Check out repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@0717577d45739eb3c851188b29f50ed6c0b2194e # v2.8.0
     - name: Download dist
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@cbed621e49e4c01b044d60f6c80ea4ed6328b281 # v2.1.1
       with:
         name: build
         path: dist
@@ -51,9 +51,9 @@ jobs:
     name: "echo-2-test [trigger|by workflow filename]"
     steps:
     - name: Check out repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@0717577d45739eb3c851188b29f50ed6c0b2194e # v2.8.0
     - name: Download dist
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@cbed621e49e4c01b044d60f6c80ea4ed6328b281 # v2.1.1
       with:
         name: build
         path: dist
@@ -78,9 +78,9 @@ jobs:
     name: "long-running-test [trigger+wait|by workflow filename|shoud succeed]"
     steps:
     - name: Check out repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@0717577d45739eb3c851188b29f50ed6c0b2194e # v2.8.0
     - name: Download dist
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@cbed621e49e4c01b044d60f6c80ea4ed6328b281 # v2.1.1
       with:
         name: build
         path: dist
@@ -93,11 +93,11 @@ jobs:
         wait-for-completion-interval: 10s
         wait-for-completion-timeout: 5m
       continue-on-error: true
-    - uses: nick-invision/assert-action@v1
+    - uses: nick-invision/assert-action@1e012cc9f1bf73ccc96470b56c8887478c647e8a # v1.3.1
       with:
         expected: success
         actual: ${{ steps.long-running-workflow.outputs.workflow-conclusion }}
-    - uses: nick-invision/assert-action@v1
+    - uses: nick-invision/assert-action@1e012cc9f1bf73ccc96470b56c8887478c647e8a # v1.3.1
       with:
         expected: success
         actual: ${{ steps.long-running-workflow.outcome }}
@@ -108,9 +108,9 @@ jobs:
     name: "failing-test [trigger+wait|by workflow filename|shoud report failure]"
     steps:
     - name: Check out repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@0717577d45739eb3c851188b29f50ed6c0b2194e # v2.8.0
     - name: Download dist
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@cbed621e49e4c01b044d60f6c80ea4ed6328b281 # v2.1.1
       with:
         name: build
         path: dist
@@ -124,11 +124,11 @@ jobs:
         wait-for-completion-timeout: 5m
       continue-on-error: true
     - run: echo "worflow-conclusion=${{ steps.failing-workflow.outputs.workflow-conclusion }}"
-    - uses: nick-invision/assert-action@v1
+    - uses: nick-invision/assert-action@1e012cc9f1bf73ccc96470b56c8887478c647e8a # v1.3.1
       with:
         expected: failure
         actual: ${{ steps.failing-workflow.outputs.workflow-conclusion }}
-    - uses: nick-invision/assert-action@v1
+    - uses: nick-invision/assert-action@1e012cc9f1bf73ccc96470b56c8887478c647e8a # v1.3.1
       with:
         expected: failure
         actual: ${{ steps.failing-workflow.outcome }}
@@ -139,9 +139,9 @@ jobs:
     name: "timeout-test [trigger+wait|by workflow filename|shoud report timed_out]"
     steps:
     - name: Check out repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@0717577d45739eb3c851188b29f50ed6c0b2194e # v2.8.0
     - name: Download dist
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@cbed621e49e4c01b044d60f6c80ea4ed6328b281 # v2.1.1
       with:
         name: build
         path: dist
@@ -154,11 +154,11 @@ jobs:
         wait-for-completion-interval: 10s
         wait-for-completion-timeout: 30s
       continue-on-error: true
-    - uses: nick-invision/assert-action@v1
+    - uses: nick-invision/assert-action@1e012cc9f1bf73ccc96470b56c8887478c647e8a # v1.3.1
       with:
         expected: timed_out
         actual: ${{ steps.timeout-workflow.outputs.workflow-conclusion }}
-    - uses: nick-invision/assert-action@v1
+    - uses: nick-invision/assert-action@1e012cc9f1bf73ccc96470b56c8887478c647e8a # v1.3.1
       with:
         expected: failure
         actual: ${{ steps.timeout-workflow.outcome }}
@@ -176,9 +176,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Check out repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@0717577d45739eb3c851188b29f50ed6c0b2194e # v2.8.0
     - name: Download dist
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@cbed621e49e4c01b044d60f6c80ea4ed6328b281 # v2.1.1
       with:
         name: build
         path: dist
