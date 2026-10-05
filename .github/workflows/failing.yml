@@ -3,8 +3,7 @@ name: Failing
 on: 
   workflow_dispatch:
 
-permissions:
-  contents: read
+permissions: {}
 
 jobs:
   echo:

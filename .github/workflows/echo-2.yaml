@@ -8,8 +8,7 @@ on:
         required: false
         default: "this is echo 2"
 
-permissions:
-  contents: read
+permissions: {}
 
 jobs:
   echo:
