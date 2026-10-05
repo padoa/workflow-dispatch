@@ -3,6 +3,9 @@ name: Long running
 on: 
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   echo:
     runs-on: ubuntu-latest

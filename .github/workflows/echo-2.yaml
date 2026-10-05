@@ -8,6 +8,9 @@ on:
         required: false
         default: "this is echo 2"
 
+permissions:
+  contents: read
+
 jobs:
   echo:
     runs-on: ubuntu-latest
