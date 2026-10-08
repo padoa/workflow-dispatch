@@ -18,4 +18,6 @@ jobs:
       url: www.google.com
     steps:
       - name: Echo message
-        run: echo '${{ github.event.inputs.message }}'
+        env:
+          MESSAGE: ${{ github.event.inputs.message }}
+        run: echo "${MESSAGE}"
