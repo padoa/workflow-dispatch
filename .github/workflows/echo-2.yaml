@@ -8,9 +8,13 @@ on:
         required: false
         default: "this is echo 2"
 
+permissions: {}
+
 jobs:
   echo:
     runs-on: ubuntu-latest
     steps:
       - name: Echo message
-        run: echo '${{ github.event.inputs.message }}'
+        env:
+          MESSAGE: ${{ github.event.inputs.message }}
+        run: echo "${MESSAGE}"

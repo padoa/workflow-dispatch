@@ -3,6 +3,8 @@ name: Timeout
 on: 
   workflow_dispatch:
 
+permissions: {}
+
 jobs:
   wait:
     runs-on: ubuntu-latest

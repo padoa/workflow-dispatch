@@ -5,6 +5,9 @@ on:
     branches: [ master ]
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -172,6 +175,8 @@ jobs:
     #     ref: master 
 
   deploy:
+    permissions:
+      contents: write
     needs: [echo-1-test, echo-2-test, long-running-test, failing-test, timeout-test]
     runs-on: ubuntu-latest
     steps:
@@ -183,7 +188,7 @@ jobs:
         name: build
         path: dist
     - name: Update repo with build
-      uses: mikeal/publish-to-github-action@master
+      uses: mikeal/publish-to-github-action@e5a27bbb5174edae8930d2250fc98a3a32478f81 # master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
